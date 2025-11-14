@@ -1,4 +1,7 @@
+import inspect
 from typing import Callable, Generic, TypeVar
+
+from .pipe_error import PipeError
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -15,7 +18,18 @@ class Pipe(Generic[T]):
         return self.pipe(fn)
 
     def pipe(self, fn: Callable[[T], U]) -> Pipe[U]:
-        return Pipe(fn(self.value))
+        val = self.value
+        sig = inspect.signature(fn)
+        num_params = len(sig.parameters)
 
-    def unwrap(self) -> T:
+        if not isinstance(val, (tuple, list)):
+            return Pipe(fn(val))
+        
+        if num_params != len(val):
+            raise PipeError(f"Function {fn.__name__} expects {num_params} arguments, received {len(val)}")
+            
+        return Pipe(fn(*val))
+
+    @property
+    def val(self) -> T:
         return self.value

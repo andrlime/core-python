@@ -1,0 +1,2 @@
+class PipeError(ValueError):
+    pass
