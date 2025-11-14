@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  lint:
+    cmds:
+      - uv run ruff format --check
+      - uv run ruff check
+  typecheck:
+    cmds:
+      - uv run mypy .
+  format:
+    cmds:
+      - uv run ruff format
+
