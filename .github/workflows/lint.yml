@@ -1,4 +1,4 @@
-name: "[ci] run mypy and ruff"
+name: "[ci] run pyrefly and ruff"
 
 on:
   push:
@@ -25,12 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: uv sync
-      
-      - name: Run mypy on src files
-        run: uv run mypy .
-      
-      - name: Run ruff format on src files
-        run: uv run ruff format --check
 
-      - name: Run ruff check on src files
-        run: uv run ruff check
+      - name: Run ruff format check on src files
+        run: uv run ruff format --check .
+        
+      - name: Run ruff other check on src files
+        run: uv run ruff check .
+
+      - name: Run pyrefly check on src files
+        run: uv run pyrefly check .

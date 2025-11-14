@@ -1,4 +1,20 @@
-from core.common import print_project_name
+from core.logger import LogLevel, get_logger
+from core.pipe import Pipe
+
+logger = get_logger(__name__, LogLevel.DEBUG)
 
 if __name__ == "__main__":
-    print_project_name()
+    logger.debug("hello world")
+    logger.warning("hello world")
+    logger.info("hello world")
+    logger.error("hello world")
+    logger.critical("hello world")
+
+    (
+        (
+            Pipe(5) >> (lambda x: x + 1) >> (lambda x: x + 3) >> (lambda x: x + 3) >> (lambda x: x + 3)
+            | (lambda x: x + 3)
+            | (lambda x: x + 3)
+            | (lambda x: x + 3)
+        ).pipe(print)
+    )
