@@ -11,10 +11,12 @@ if __name__ == "__main__":
     logger.critical("hello world")
 
     (
-        (
-            Pipe(5) >> (lambda x: x + 1) >> (lambda x: x + 3) >> (lambda x: x + 3) >> (lambda x: x + 3)
-            | (lambda x: x + 3)
-            | (lambda x: x + 3)
-            | (lambda x: x + 3)
-        ).pipe(print)
+        Pipe(5)
+        >> (lambda x: x + 1)
+        >> (lambda x: x + 3)
+        >> (lambda x: x + 3)
+        >> (lambda x: x + 3)
+        >> (lambda x: x + 3)
+        >> (lambda x: x + 3)
+        >> (lambda x: x + 3)
     )
