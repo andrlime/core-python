@@ -1,18 +1,16 @@
 [project]
-name = "temp"
+name = "core"
 version = "0.1.0"
-description = "Add your description here"
+description = "Description goes here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
 
 [dependency-groups]
 dev = [
-    "mypy>=1.18.2",
-    "pyrefly>=0.39.3",
-    "ruff>=0.14.2",
+    "pyrefly>=0.41.1",
+    "ruff>=0.14.4",
 ]
 
-[tool.pyrefly]
-project-includes = ["**/*"]
-project-excludes = ["**/*venv/**/*"]
+[tool.ruff]
+line-length = 120
